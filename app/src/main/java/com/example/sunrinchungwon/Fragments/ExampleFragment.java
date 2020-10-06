@@ -4,45 +4,44 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.sunrinchungwon.Adapters.RecyclerViewAdapter;
+import com.example.sunrinchungwon.MainActivity;
 import com.example.sunrinchungwon.R;
+import com.example.sunrinchungwon.items.recycler_item;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link ExampleFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link ExampleFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.List;
+
 public class ExampleFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private RecyclerView recyclerView;
+    private LinearLayoutManager linearLayoutManager;
+    private RecyclerViewAdapter recyclerViewAdapter;
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    MainActivity mainActivity;
 
+    String title;
+    String date;
+    String isResponed;
+    private Context context=getContext();
     private OnFragmentInteractionListener mListener;
 
     public ExampleFragment() {
-        // Required empty public constructor
+
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ExampleFragment.
-     */
-    // TODO: Rename and change types and number of parameters
+
     public static ExampleFragment newInstance(String param1, String param2) {
         ExampleFragment fragment = new ExampleFragment();
         Bundle args = new Bundle();
@@ -59,13 +58,28 @@ public class ExampleFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_example, container, false);
+        View v= inflater.inflate(R.layout.fragment_example, container, false);
+        mainActivity = (MainActivity) getActivity();
+        recyclerView = v.findViewById(R.id.recyclerView);
+        linearLayoutManager = new LinearLayoutManager(mainActivity);
+        recyclerView.addItemDecoration( new DividerItemDecoration(mainActivity,linearLayoutManager.getOrientation()));
+        recyclerView.setLayoutManager(linearLayoutManager);
+        List<recycler_item> recycler_item = new ArrayList<>();
+        recycler_item.add(new recycler_item("김덕배","010-1234-5678","기모링!"));
+        recycler_item.add(new recycler_item("강구팔","010-5678-1234","기모링!"));
+        recycler_item.add(new recycler_item("이배윤","010-3412-7856","기모링!"));
+        recycler_item.add(new recycler_item("버기","123-1256-3478","기모링!"));
+
+        recyclerViewAdapter = new RecyclerViewAdapter(mainActivity,recycler_item);
+        recyclerView.setAdapter(recyclerViewAdapter);
+        return v;
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
