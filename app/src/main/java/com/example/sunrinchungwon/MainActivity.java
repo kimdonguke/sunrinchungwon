@@ -26,20 +26,17 @@ public class MainActivity extends AppCompatActivity {
         mTabLayout = (TabLayout) findViewById(R.id.layout_tab);
         mViewPager = (ViewPager) findViewById(R.id.pager_content);
 
-        mTabLayout.addTab(mTabLayout.newTab().setCustomView(createTabView("홈")));
+        mTabLayout.addTab(mTabLayout.newTab().setCustomView(createTabView("등록된청원")));
 
-        mTabLayout.addTab(mTabLayout.newTab().setCustomView(createTabView("게임")));
+        mTabLayout.addTab(mTabLayout.newTab().setCustomView(createTabView("답변완료")));
 
-        mTabLayout.addTab(mTabLayout.newTab().setCustomView(createTabView("영화")));
+        mTabLayout.addTab(mTabLayout.newTab().setCustomView(createTabView("청원 등록")));
 
-        mTabLayout.addTab(mTabLayout.newTab().setCustomView(createTabView("도서")));
+        mTabLayout.addTab(mTabLayout.newTab().setCustomView(createTabView("내정보")));
 
-        mTabLayout.addTab(mTabLayout.newTab().setCustomView(createTabView("뉴스스탠드")));
+        mTabLayout.addTab(mTabLayout.newTab().setCustomView(createTabView("환경 설정")));
 
-        mContentPagerAdapter = new ContentsPagerAdapter(
-
-                getSupportFragmentManager(), mTabLayout.getTabCount());
-
+        mContentPagerAdapter = new ContentsPagerAdapter(getSupportFragmentManager(), mTabLayout.getTabCount());
         mViewPager.setAdapter(mContentPagerAdapter);
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
 
