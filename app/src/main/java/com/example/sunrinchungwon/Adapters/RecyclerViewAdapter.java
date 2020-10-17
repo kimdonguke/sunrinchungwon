@@ -1,6 +1,7 @@
 package com.example.sunrinchungwon.Adapters;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,8 +9,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.sunrinchungwon.MainActivity;
 import com.example.sunrinchungwon.R;
+import com.example.sunrinchungwon.SeepostActivity;
 import com.example.sunrinchungwon.items.recycler_item;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     private Activity activity;
     private List<recycler_item> recycler_item;
+    private Intent intent;
 
     public RecyclerViewAdapter(Activity activity, List<recycler_item> recycler_item) {
         this.activity = activity;
@@ -34,7 +36,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView date;
         TextView isResponed;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(final View itemView) {
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.item_title);
             date = (TextView) itemView.findViewById(R.id.item_date);
@@ -44,6 +46,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 public void onClick(View view) {
                     Toast.makeText(activity, "click " +
                             recycler_item.get(getAdapterPosition()).getTitle(), Toast.LENGTH_SHORT).show();
+                    intent=new Intent(activity, SeepostActivity.class);
+                    activity.startActivity(intent);
                 }
             });
 
