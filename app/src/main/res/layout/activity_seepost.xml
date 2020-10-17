@@ -11,7 +11,7 @@
         android:id="@+id/seepost_headlineText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30sp"간
+        android:textSize="30sp"
         android:text="제목 텍스트입니다"
         />
     <TextView
