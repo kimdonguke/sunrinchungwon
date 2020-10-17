@@ -18,7 +18,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     private Activity activity;
     private List<recycler_item> recycler_item;
-    private MainActivity ac;
 
     public RecyclerViewAdapter(Activity activity, List<recycler_item> recycler_item) {
         this.activity = activity;

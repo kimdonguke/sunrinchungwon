@@ -74,7 +74,11 @@ public class ExampleFragment extends Fragment {
         recycler_item.add(new recycler_item("김덕배","010-1234-5678","기모링!"));
         recycler_item.add(new recycler_item("강구팔","010-5678-1234","기모링!"));
         recycler_item.add(new recycler_item("이배윤","010-3412-7856","기모링!"));
-        recycler_item.add(new recycler_item("버기","123-1256-3478","기모링!"));
+        recycler_item.add(new recycler_item("버기","123-1256-3478","기모링!")); recycler_item.add(new recycler_item("김덕배","010-1234-5678","기모링!"));
+        recycler_item.add(new recycler_item("강구팔","010-5678-1234","기모링!"));
+        recycler_item.add(new recycler_item("이배윤","010-3412-7856","기모링!"));
+        recycler_item.add(new recycler_item("버기","123-1256-3478","기모링!")); recycler_item.add(new recycler_item("김덕배","010-1234-5678","기모링!"));
+        recycler_item.add(new recycler_item("강구팔","010-5678-1234","기모링!"));
 
         recyclerViewAdapter = new RecyclerViewAdapter(mainActivity,recycler_item);
         recyclerView.setAdapter(recyclerViewAdapter);
