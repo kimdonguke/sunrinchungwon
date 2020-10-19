@@ -20,6 +20,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private Activity activity;
     private List<recycler_item> recycler_item;
     private Intent intent;
+    private String introduction, mainSubject,conclusion;
 
     public RecyclerViewAdapter(Activity activity, List<recycler_item> recycler_item) {
         this.activity = activity;
@@ -47,19 +48,25 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     Toast.makeText(activity, "click " +
                             recycler_item.get(getAdapterPosition()).getTitle(), Toast.LENGTH_SHORT).show();
                     intent=new Intent(activity, SeepostActivity.class);
+                    intent.putExtra("title",title.getText().toString());
+                    intent.putExtra("date",date.getText().toString());
+                    intent.putExtra("isResponed",isResponed.getText().toString());
+                    intent.putExtra("introduction",introduction);
+                    intent.putExtra("mainSubject",mainSubject);
+                    intent.putExtra("conclusion",conclusion);
                     activity.startActivity(intent);
                 }
             });
 
-            itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View view) {
-                    Toast.makeText(activity, "remove " +
-                            recycler_item.get(getAdapterPosition()).getTitle(), Toast.LENGTH_SHORT).show();
-                    removeItemView(getAdapterPosition());
-                    return false;
-                }
-            });
+//            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+//                @Override
+//                public boolean onLongClick(View view) {
+//                    Toast.makeText(activity, "remove " +
+//                            recycler_item.get(getAdapterPosition()).getTitle(), Toast.LENGTH_SHORT).show();
+//                    removeItemView(getAdapterPosition());
+//                    return false;
+//                }
+//            });
         }
     }
 
@@ -77,7 +84,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         // 데이터 결합
         holder.title.setText(data.getTitle());
         holder.date.setText(data.getDate());
-        holder.isResponed.setText(data.getResponed());
+        holder.isResponed.setText(data.getIsResponed());
+        introduction=data.getIntroduction();
+        mainSubject=data.getMainSubject();
+        conclusion=data.getConclusion();
     }
 
     private void removeItemView(int position) {

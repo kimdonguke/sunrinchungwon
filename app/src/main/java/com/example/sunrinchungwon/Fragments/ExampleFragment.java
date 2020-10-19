@@ -10,6 +10,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.sunrinchungwon.Adapters.RecyclerViewAdapter;
 import com.example.sunrinchungwon.MainActivity;
@@ -26,7 +29,7 @@ public class ExampleFragment extends Fragment {
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
     private RecyclerViewAdapter recyclerViewAdapter;
-
+    private Spinner mSpinner;
     private String mParam1;
     private String mParam2;
     MainActivity mainActivity;
@@ -71,17 +74,51 @@ public class ExampleFragment extends Fragment {
         recyclerView.addItemDecoration( new DividerItemDecoration(mainActivity,linearLayoutManager.getOrientation()));
         recyclerView.setLayoutManager(linearLayoutManager);
         List<recycler_item> recycler_item = new ArrayList<>();
-        recycler_item.add(new recycler_item("김덕배","010-1234-5678","기모링!"));
-        recycler_item.add(new recycler_item("강구팔","010-5678-1234","기모링!"));
-        recycler_item.add(new recycler_item("이배윤","010-3412-7856","기모링!"));
-        recycler_item.add(new recycler_item("버기","123-1256-3478","기모링!")); recycler_item.add(new recycler_item("김덕배","010-1234-5678","기모링!"));
-        recycler_item.add(new recycler_item("강구팔","010-5678-1234","기모링!"));
-        recycler_item.add(new recycler_item("이배윤","010-3412-7856","기모링!"));
-        recycler_item.add(new recycler_item("버기","123-1256-3478","기모링!")); recycler_item.add(new recycler_item("김덕배","010-1234-5678","기모링!"));
-        recycler_item.add(new recycler_item("강구팔","010-5678-1234","기모링!"));
+        recycler_item.add(new recycler_item("김덕배","010-1234-5678","기모링!","","",""));
+        recycler_item.add(new recycler_item("강구팔","010-5678-1234","기모링!","","",""));
+        recycler_item.add(new recycler_item("이배윤","010-3412-7856","기모링!","","",""));
+        recycler_item.add(new recycler_item("버기","123-1256-3478","기모링!","","",""));
+        recycler_item.add(new recycler_item("김덕배","010-1234-5678","기모링!","","",""));
+        recycler_item.add(new recycler_item("강구팔","010-5678-1234","기모링!","","",""));
+        recycler_item.add(new recycler_item("이배윤","010-3412-7856","기모링!","","",""));
+        recycler_item.add(new recycler_item("버기","123-1256-3478","기모링!","","",""));
+        recycler_item.add(new recycler_item("김덕배","010-1234-5678","기모링!","","",""));
+        recycler_item.add(new recycler_item("강구팔","010-5678-1234","기모링!","","",""));
 
         recyclerViewAdapter = new RecyclerViewAdapter(mainActivity,recycler_item);
         recyclerView.setAdapter(recyclerViewAdapter);
+
+        mSpinner=v.findViewById(R.id.frag1_spinner);
+        mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch ((String)parent.getItemAtPosition(position)){
+                    case "전체":
+                        Toast.makeText(mainActivity,(String)parent.getItemAtPosition(position)+"was selected", Toast.LENGTH_SHORT).show();
+                        break;
+                    case "1호관":
+                        Toast.makeText(mainActivity,(String)parent.getItemAtPosition(position)+"was selected", Toast.LENGTH_SHORT).show();
+                        break;
+                    case "2호관":
+                        Toast.makeText(mainActivity,(String)parent.getItemAtPosition(position)+"was selected", Toast.LENGTH_SHORT).show();
+                        break;
+                    case "3호관":
+                        Toast.makeText(mainActivity,(String)parent.getItemAtPosition(position)+"was selected", Toast.LENGTH_SHORT).show();
+                        break;
+                    case "4호관":
+                        Toast.makeText(mainActivity,(String)parent.getItemAtPosition(position)+"was selected", Toast.LENGTH_SHORT).show();
+                        break;
+                    case "체육관":
+                        Toast.makeText(mainActivity,(String)parent.getItemAtPosition(position)+"was selected", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         return v;
 
     }

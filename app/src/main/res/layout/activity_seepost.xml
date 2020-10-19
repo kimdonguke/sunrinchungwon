@@ -8,14 +8,14 @@
     android:orientation="vertical"
     >
     <TextView
-        android:id="@+id/seepost_headlineText"
+        android:id="@+id/seepost_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="30sp"
         android:text="제목 텍스트입니다"
         />
     <TextView
-        android:id="@+id/seepost_dateText"
+        android:id="@+id/seepost_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="15sp"
@@ -34,12 +34,30 @@
                 app:cardCornerRadius="10dp"
                 android:background="#C25353"
                 >
-                <TextView
-                    android:id="@+id/info_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="서론입니다용~"
-                    />
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:orientation="vertical"
+                   >
+                   <TextView
+                       android:id="@+id/seepost_introduction"
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:text="서론입니다용~"
+                       />
+                   <TextView
+                       android:id="@+id/seepost_mainSubject"
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:text="본론입니다용~"
+                       />
+                   <TextView
+                       android:id="@+id/seepost_conclusion"
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:text="결론입니다용~"
+                       />
+               </LinearLayout>
             </android.support.v7.widget.CardView>
         </LinearLayout>
     </ScrollView>
