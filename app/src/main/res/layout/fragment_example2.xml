@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.Example2Fragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    tools:context=".Fragments.Example2Fragment"
+    android:orientation="vertical"
+    >
+    <Spinner
+        android:id="@+id/frag1_spinner"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="hello_blank_fragment2" />
-
-</FrameLayout>
+        android:layout_height="wrap_content"
+        android:paddingVertical="10dp"
+        android:entries="@array/fillter"/>
+<android.support.v7.widget.RecyclerView
+    android:id="@+id/frag2_recyclerview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>
+</LinearLayout>

@@ -5,18 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Fragments.Example3Fragment">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="제목을 입력해주세요!"
-        android:textColor="#000000"
-        android:textSize="25sp"
-        />
-    <EditText
-        android:id="@+id/frag3_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="ex)체육관 바닥이 너무 미끄러워요"
+
         />
    <ScrollView
        android:layout_width="match_parent"
@@ -30,16 +19,35 @@
            <TextView
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
+               android:text="제목을 입력해주세요!"
+               android:textColor="#000000"
+               android:textSize="25sp"
+               android:layout_marginTop="10dp"
+               />
+           <EditText
+               android:id="@+id/frag3_title"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:hint="ex)체육관 바닥이 너무 미끄러워요"
+               android:background="#DFFFFFFF"
+               android:paddingVertical="10dp"
+               />
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
                android:text="서론을 입력해주세요"
                android:textColor="#000000"
                android:textSize="15sp"
                android:gravity="left"
+               android:layout_marginTop="20sp"
                />
            <EditText
                android:id="@+id/frag3_introduction"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:hint="서론을 입력해주세요"
+               android:background="#DFFFFFFF"
+               android:paddingVertical="10dp"
                />
            <TextView
                android:layout_width="match_parent"
@@ -47,13 +55,17 @@
                android:text="본론을 입력해주세요"
                android:textColor="#000000"
                android:textSize="15sp"
+               android:layout_marginTop="20dp"
                android:gravity="left"
+
                />
            <EditText
                android:id="@+id/frag3_mainSubject"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:hint="결론을 입력해주세요"
+               android:hint="본론을 입력해주세요"
+               android:background="#DFFFFFFF"
+               android:paddingVertical="10dp"
                />
            <TextView
                android:layout_width="match_parent"
@@ -61,12 +73,15 @@
                android:text="결론을 입력해주세요"
                android:textColor="#000000"
                android:textSize="15sp"
+               android:layout_marginTop="20dp"
                android:gravity="left"/>
            <EditText
                android:id="@+id/frag3_conclusion"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:hint="본문을 입력해주세요"
+               android:hint="결론을 입력해주세요"
+               android:background="#DFFFFFFF"
+               android:paddingVertical="10dp"
                />
            <Button
                android:id="@+id/frag3_submitBtn"
@@ -75,6 +90,7 @@
                android:layout_gravity="right|bottom"
                android:text="올리기"
                android:background="#ffffff"
+               android:layout_marginTop="10dp"
                />
 
        </LinearLayout>

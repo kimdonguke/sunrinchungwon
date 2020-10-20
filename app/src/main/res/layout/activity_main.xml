@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-    <android.support.v4.view.ViewPager
-        android:id="@+id/pager_content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    >
     <android.support.design.widget.TabLayout
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -24,6 +20,15 @@
         android:background="#ffffff"
         app:tabTextColor="#000000"
         app:tabSelectedTextColor="@color/colorPrimary"
-        app:tabIndicatorColor="@color/colorPrimary"/>
+        app:tabIndicatorColor="@color/colorPrimary"
+        android:layout_gravity="bottom"
+        />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
-</android.support.constraint.ConstraintLayout>
+
+
+
+</LinearLayout>
