@@ -73,6 +73,7 @@
                    app:layout_constraintBottom_toTopOf="@+id/seepost_comLayout"
                    >
                    <android.support.v7.widget.RecyclerView
+                       android:id="@+id/seepost_recyclerview"
                        android:layout_width="match_parent"
                        android:layout_height="wrap_content"/>
                </LinearLayout>
@@ -82,16 +83,25 @@
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:orientation="horizontal"
+                   android:weightSum="2"
                    >
                    <Button
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content" />
+                       android:id="@+id/seepost_agree"
+                       android:layout_width="0dp"
+                       android:layout_height="wrap_content"
+                       android:layout_weight="1"
+                       android:text="찬성"
+                       android:background="#00ACC1"
+                       />
+
                    <Button
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content" />
-                   <Button
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content" />
+                       android:id="@+id/seepost_dialogueBtn"
+                       android:layout_width="0dp"
+                       android:layout_height="wrap_content"
+                       android:layout_weight="1"
+                       android:text="proscon"
+                       android:background="#BB7F7F"
+                       />
                </LinearLayout>
            </android.support.constraint.ConstraintLayout>
         </LinearLayout>

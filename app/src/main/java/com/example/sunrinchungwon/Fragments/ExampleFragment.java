@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -30,15 +31,14 @@ public class ExampleFragment extends Fragment {
     private LinearLayoutManager linearLayoutManager;
     private RecyclerViewAdapter recyclerViewAdapter;
     private Spinner mSpinner;
-    private String mParam1;
-    private String mParam2;
     MainActivity mainActivity;
+    SwipeRefreshLayout swipeRefreshLayout;
 
+    String fillter_string;
     String title;
     String date;
     String isResponed;
     private Context context=getContext();
-    private OnFragmentInteractionListener mListener;
 
     public ExampleFragment() {
 
@@ -57,10 +57,6 @@ public class ExampleFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
 
     }
 
@@ -73,45 +69,18 @@ public class ExampleFragment extends Fragment {
         linearLayoutManager = new LinearLayoutManager(mainActivity);
         recyclerView.addItemDecoration( new DividerItemDecoration(mainActivity,linearLayoutManager.getOrientation()));
         recyclerView.setLayoutManager(linearLayoutManager);
-        List<recycler_item> recycler_item = new ArrayList<>();
+        ArrayList<recycler_item> recycler_item = new ArrayList<>();
         recycler_item.add(new recycler_item("김덕배","010-1234-5678","기모링!","","",""));
-        recycler_item.add(new recycler_item("강구팔","010-5678-1234","기모링!","","",""));
-        recycler_item.add(new recycler_item("이배윤","010-3412-7856","기모링!","","",""));
-        recycler_item.add(new recycler_item("버기","123-1256-3478","기모링!","","",""));
-        recycler_item.add(new recycler_item("김덕배","010-1234-5678","기모링!","","",""));
-        recycler_item.add(new recycler_item("강구팔","010-5678-1234","기모링!","","",""));
-        recycler_item.add(new recycler_item("이배윤","010-3412-7856","기모링!","","",""));
-        recycler_item.add(new recycler_item("버기","123-1256-3478","기모링!","","",""));
-        recycler_item.add(new recycler_item("김덕배","010-1234-5678","기모링!","","",""));
-        recycler_item.add(new recycler_item("강구팔","010-5678-1234","기모링!","","",""));
-
         recyclerViewAdapter = new RecyclerViewAdapter(mainActivity,recycler_item);
         recyclerView.setAdapter(recyclerViewAdapter);
 
         mSpinner=v.findViewById(R.id.frag1_spinner);
         mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            String string="이 선택되었습니다.";
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                switch ((String)parent.getItemAtPosition(position)){
-                    case "전체":
-                        Toast.makeText(mainActivity,(String)parent.getItemAtPosition(position)+"was selected", Toast.LENGTH_SHORT).show();
-                        break;
-                    case "1호관":
-                        Toast.makeText(mainActivity,(String)parent.getItemAtPosition(position)+"was selected", Toast.LENGTH_SHORT).show();
-                        break;
-                    case "2호관":
-                        Toast.makeText(mainActivity,(String)parent.getItemAtPosition(position)+"was selected", Toast.LENGTH_SHORT).show();
-                        break;
-                    case "3호관":
-                        Toast.makeText(mainActivity,(String)parent.getItemAtPosition(position)+"was selected", Toast.LENGTH_SHORT).show();
-                        break;
-                    case "4호관":
-                        Toast.makeText(mainActivity,(String)parent.getItemAtPosition(position)+"was selected", Toast.LENGTH_SHORT).show();
-                        break;
-                    case "체육관":
-                        Toast.makeText(mainActivity,(String)parent.getItemAtPosition(position)+"was selected", Toast.LENGTH_SHORT).show();
-                        break;
-                }
+                Toast.makeText(mainActivity,(String)parent.getItemAtPosition(position)+string, Toast.LENGTH_SHORT).show();
+                fillter_string=(String)parent.getItemAtPosition(position);
             }
 
             @Override
@@ -123,31 +92,4 @@ public class ExampleFragment extends Fragment {
 
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
 }

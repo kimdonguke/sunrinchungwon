@@ -12,19 +12,28 @@
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:text="notification title"
+        android:text="동의합니다람쥐."
         android:textSize="22sp"
         android:textColor="#000000"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="7dp"
         />
     <TextView
+        android:id="@+id/seepost_positive_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="poseted date"
+        app:layout_constraintTop_toBottomOf="@+id/seepost_positivetitle"
+        app:layout_constraintLeft_toLeftOf="@+id/seepost_positivetitle"
+        android:layout_marginTop="5dp"
+        />
+    <TextView
         android:id="@+id/seepost_positive_userId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="notification date"
-        app:layout_constraintTop_toBottomOf="@+id/notification_title"
-        app:layout_constraintLeft_toLeftOf="@+id/notification_title"
-        android:layout_marginTop="5dp"
+        android:text="user_Id"
+        app:layout_constraintTop_toTopOf="@+id/seepost_positive_date"
+        app:layout_constraintLeft_toRightOf="@+id/seepost_positive_date"
+        android:layout_marginLeft="10dp"
         />
 </android.support.constraint.ConstraintLayout>

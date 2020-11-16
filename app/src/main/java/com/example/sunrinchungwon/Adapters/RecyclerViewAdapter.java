@@ -9,20 +9,22 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.sunrinchungwon.MainActivity;
 import com.example.sunrinchungwon.R;
 import com.example.sunrinchungwon.SeepostActivity;
 import com.example.sunrinchungwon.items.recycler_item;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
     private Activity activity;
-    private List<recycler_item> recycler_item;
+    private ArrayList<recycler_item> recycler_item;
     private Intent intent;
     private String introduction, mainSubject,conclusion;
 
-    public RecyclerViewAdapter(Activity activity, List<recycler_item> recycler_item) {
+    public RecyclerViewAdapter(Activity activity, ArrayList<recycler_item> recycler_item) {
         this.activity = activity;
         this.recycler_item = recycler_item;
     }

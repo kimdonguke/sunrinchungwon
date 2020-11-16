@@ -9,17 +9,6 @@ public class recycler_item {
     String conclusion;//결론
     String tag;
 
-
-
-    public recycler_item(String title, String date, String isResponed, String introduction, String mainSubject, String conclusion, String tag) {
-        this.title = title;
-        this.date = date;
-        this.isResponed = isResponed;
-        this.introduction = introduction;
-        this.mainSubject = mainSubject;
-        this.conclusion = conclusion;
-        this.tag=tag;
-    }
     public recycler_item(String title, String date, String isResponed, String introduction, String mainSubject, String conclusion) {
         this.title = title;
         this.date = date;
