@@ -19,7 +19,11 @@ import com.example.sunrinchungwon.Activities.MainActivity;
 import com.example.sunrinchungwon.R;
 import com.example.sunrinchungwon.items.recycler_item;
 
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class ExampleFragment extends Fragment {
 
@@ -79,7 +83,7 @@ public class ExampleFragment extends Fragment {
             @Override
             public void onRefresh() {
                 //새로고침 코드
-                recycler_item.add(new recycler_item("김덕배", "010-1234-5678", "기모링!", "", "", ""));
+                recycler_item.add(new recycler_item("MainTitle", getCurrentTime(), "답변 안 됨", "", "", ""));
                 recyclerViewAdapter.notifyDataSetChanged();
                 swipeRefreshLayout.setRefreshing(false);
             }
@@ -127,7 +131,9 @@ public class ExampleFragment extends Fragment {
             }
         }
     }
-    public void loadData(){
-        //firestore 에서 불러오기 handler 써야대나?? thread 써야대나
+    public String getCurrentTime(){
+        Date currentTiem= Calendar.getInstance().getTime();
+        SimpleDateFormat a =new SimpleDateFormat("MM-dd HH:mm");
+        return a.format(currentTiem);
     }
 }

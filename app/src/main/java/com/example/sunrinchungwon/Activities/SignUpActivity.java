@@ -1,5 +1,7 @@
 package com.example.sunrinchungwon.Activities;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,8 +11,10 @@ import android.widget.EditText;
 import com.example.sunrinchungwon.R;
 
 public class SignUpActivity extends AppCompatActivity {
+
     Button signIn_btn;
     EditText user_name,user_id,user_password;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +27,8 @@ public class SignUpActivity extends AppCompatActivity {
         signIn_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch ()
+                intent=new Intent(getBaseContext(),LoginActivity.class);
+                startActivity(intent);
             }
         });
     }
