@@ -3,16 +3,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
 
+        >
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/frag5_profile_view"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:background="#A09C9C"
+                />
+            <TextView
+                android:id="@+id/frag5_userNickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="User_NickName"
+                app:layout_constraintTop_toTopOf="@+id/frag5_profile_view"
+                app:layout_constraintLeft_toRightOf="@+id/frag5_profile_view"
+                />
+            <TextView
+                android:id="@+id/frag5_userName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/frag5_userNickname"
+                app:layout_constraintLeft_toLeftOf="@+id/frag5_userNickname"
+                android:text="User_Name"
+                />
+
+        </android.support.constraint.ConstraintLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/frag5_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 </ScrollView>
-
-
 </LinearLayout>

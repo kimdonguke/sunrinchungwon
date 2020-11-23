@@ -1,4 +1,4 @@
-package com.example.sunrinchungwon;
+package com.example.sunrinchungwon.Activities;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sunrinchungwon.Adapters.Seepost_commentAdapter;
+import com.example.sunrinchungwon.R;
 import com.example.sunrinchungwon.items.Code;
 import com.example.sunrinchungwon.items.seepost_item;
 

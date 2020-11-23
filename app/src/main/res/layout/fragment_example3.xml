@@ -29,12 +29,14 @@
                android:hint="ex)체육관 바닥이 너무 미끄러워요"
                android:background="#DFFFFFFF"
                android:paddingVertical="10dp"
+               android:layout_marginBottom="10dp"
                />
            <LinearLayout
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:orientation="vertical"
                android:layout_marginVertical="10dp"
+               android:background="#ffffff"
                >
                <TextView
                    android:layout_width="match_parent"

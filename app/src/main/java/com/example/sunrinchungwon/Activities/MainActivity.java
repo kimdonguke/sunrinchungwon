@@ -1,4 +1,4 @@
-package com.example.sunrinchungwon;
+package com.example.sunrinchungwon.Activities;
 
 import android.content.Context;
 import android.support.design.widget.TabLayout;
@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.sunrinchungwon.Adapters.ContentsPagerAdapter;
+import com.example.sunrinchungwon.R;
+import com.example.sunrinchungwon.items.User;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private Context mContext;
     private ViewPager mViewPager;
     private ContentsPagerAdapter mContentPagerAdapter;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 // ㅎ...흥 오버라이드 하던가 말던가!
             }
         });
+
     }
 
     private View createTabView(String tabName) {

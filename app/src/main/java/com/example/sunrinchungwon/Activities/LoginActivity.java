@@ -1,7 +1,9 @@
-package com.example.sunrinchungwon;
+package com.example.sunrinchungwon.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.sunrinchungwon.R;
 
 public class LoginActivity extends AppCompatActivity {
 

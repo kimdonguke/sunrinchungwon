@@ -9,13 +9,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.sunrinchungwon.MainActivity;
 import com.example.sunrinchungwon.R;
-import com.example.sunrinchungwon.SeepostActivity;
+import com.example.sunrinchungwon.Activities.SeepostActivity;
 import com.example.sunrinchungwon.items.recycler_item;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
