@@ -2,9 +2,9 @@ package com.example.sunrinchungwon.Activities;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
+import com.google.android.material.tabs.TabLayout;
+import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.sunrinchungwon.Adapters.ContentsPagerAdapter;
 import com.example.sunrinchungwon.R;
 import com.example.sunrinchungwon.items.User;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private ContentsPagerAdapter mContentPagerAdapter;
     public static User user;
     SharedPreferences sharedPreferences;
+    private FirebaseAuth mAuth ;
 
 
     @Override
@@ -44,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
         mContentPagerAdapter = new ContentsPagerAdapter(getSupportFragmentManager(), mTabLayout.getTabCount());
         mViewPager.setAdapter(mContentPagerAdapter);
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
+
+        mAuth = FirebaseAuth.getInstance();
 
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

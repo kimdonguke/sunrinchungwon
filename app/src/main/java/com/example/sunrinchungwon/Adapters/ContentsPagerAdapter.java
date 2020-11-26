@@ -1,10 +1,10 @@
 package com.example.sunrinchungwon.Adapters;
 
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 
-import android.support.v4.app.FragmentManager;
+import androidx.fragment.app.FragmentManager;
 
-import android.support.v4.app.FragmentStatePagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
 
 import com.example.sunrinchungwon.Fragments.Example2Fragment;

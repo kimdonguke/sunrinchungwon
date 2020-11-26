@@ -10,6 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="insert title"
+        android:maxLines="1"
+        android:inputType="text"
         />
     <EditText
         android:id="@+id/seepost_dia_content"

@@ -7,7 +7,7 @@
     tools:context=".Activities.MainActivity"
     android:orientation="vertical"
     >
-    <android.support.design.widget.TabLayout
+    <com.google.android.material.tabs.TabLayout
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -23,7 +23,7 @@
         app:tabIndicatorColor="@color/colorPrimary"
         android:layout_gravity="bottom"
         />
-    <android.support.v4.view.ViewPager
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/pager_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
