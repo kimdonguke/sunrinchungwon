@@ -1,10 +1,12 @@
 package com.example.sunrinchungwon.Activities;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -19,24 +21,24 @@ public class MainActivity extends AppCompatActivity {
     private Context mContext;
     private ViewPager mViewPager;
     private ContentsPagerAdapter mContentPagerAdapter;
-    User user;
+    public static User user;
+    SharedPreferences sharedPreferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Log.e("mainActivity","created");
         mContext = getApplicationContext();
         mTabLayout = (TabLayout) findViewById(R.id.layout_tab);
         mViewPager = (ViewPager) findViewById(R.id.pager_content);
+        sharedPreferences=getPreferences(MODE_PRIVATE);
 
         mTabLayout.addTab(mTabLayout.newTab().setCustomView(createTabView("등록된청원")));
-
         mTabLayout.addTab(mTabLayout.newTab().setCustomView(createTabView("답변완료")));
-
         mTabLayout.addTab(mTabLayout.newTab().setCustomView(createTabView("청원 등록")));
-
-        mTabLayout.addTab(mTabLayout.newTab().setCustomView(createTabView("내정보")));
-
+        mTabLayout.addTab(mTabLayout.newTab().setCustomView(createTabView("알람")));
         mTabLayout.addTab(mTabLayout.newTab().setCustomView(createTabView("환경 설정")));
 
         mContentPagerAdapter = new ContentsPagerAdapter(getSupportFragmentManager(), mTabLayout.getTabCount());

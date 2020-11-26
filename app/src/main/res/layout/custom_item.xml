@@ -23,7 +23,6 @@
         app:layout_constraintTop_toBottomOf="@+id/item_title"
         app:layout_constraintLeft_toLeftOf="@+id/item_title"
         android:text="2020.10.07"
-        android:textColor="#000000"
         />
     <TextView
         android:id="@+id/item_isResponed"

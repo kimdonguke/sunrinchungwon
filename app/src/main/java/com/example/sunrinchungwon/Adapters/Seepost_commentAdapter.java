@@ -5,12 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.sunrinchungwon.R;
 import com.example.sunrinchungwon.items.Code;
@@ -51,7 +53,8 @@ public class Seepost_commentAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         }
         else{
             ((ViewHolder_proscon)viewHolder).title.setText(items.get(position).getTitle());
-            ((ViewHolder_proscon)viewHolder).content.setText(items.get(position).getContent());
+            ((ViewHolder_proscon)viewHolder).content.setText(items.get(position).getContent().substring(0,9)+"....");
+            Log.e("onVindViewHolder",items.get(position).getContent());
         }
     }
     public int getItemViewType(int position){
@@ -71,6 +74,22 @@ public class Seepost_commentAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             seemoreBtn=itemView.findViewById(R.id.seepost_proscon_seemore);
             dialogBtn=itemView.findViewById(R.id.seepost_proscon_dialogue);
             random_image=itemView.findViewById(R.id.seepost_proscon_image);
+            dialogBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(activity, "12341234", Toast.LENGTH_SHORT).show();
+                }
+            });
+            seemoreBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = getAdapterPosition();
+                    if(pos != RecyclerView.NO_POSITION){
+                        items.set(pos,items.get(pos));
+                        notifyItemChanged(pos);
+                    }
+                }
+            });
         }
     }
     public class ViewHolder_agree extends RecyclerView.ViewHolder{

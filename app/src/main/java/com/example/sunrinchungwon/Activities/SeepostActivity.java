@@ -14,11 +14,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sunrinchungwon.Adapters.Seepost_commentAdapter;
+import com.example.sunrinchungwon.Fragments.ExampleFragment;
 import com.example.sunrinchungwon.R;
 import com.example.sunrinchungwon.items.Code;
 import com.example.sunrinchungwon.items.seepost_item;
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class SeepostActivity extends AppCompatActivity {
     private Intent getintent;
@@ -66,7 +70,7 @@ public class SeepostActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //agree 버튼 온클릭 리스너
                 //서버에게 리사이클러뷰 올리는 쓰레드 생성
-                dataList.add(new seepost_item("유저아이디","동의합니다", Code.ViewType.AGREE_CONTENT));
+                dataList.add(new seepost_item("유저아이디",getCurrentTime(), Code.ViewType.AGREE_CONTENT));
                 adapter.notifyDataSetChanged();
             }
         });
@@ -76,24 +80,30 @@ public class SeepostActivity extends AppCompatActivity {
                 dialog=new Dialog(SeepostActivity.this);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.seepost_dialogue);
-                dialog.show();
+
                 Button okayBtn=(Button)dialog.findViewById(R.id.seepost_dia_okayBtn);
                 final EditText titleEdit=(EditText) dialog.findViewById(R.id.seepost_dia_title);
                 final EditText contentsEdit=(EditText)dialog.findViewById(R.id.seepost_dia_content);
                 okayBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if(titleEdit.getText().toString().matches("")&&contentsEdit.getText().toString().matches("")){
+                        if(titleEdit.getText().toString().equals("")||contentsEdit.getText().toString().equals("")){
                             Toast.makeText(SeepostActivity.this, "내용을 입력해주세요", Toast.LENGTH_SHORT).show();
                         }
                         else{
                             dataList.add(new seepost_item(titleEdit.getText().toString(),contentsEdit.getText().toString(),Code.ViewType.PROSCON_CONTENT));
                             adapter.notifyDataSetChanged();
-                            finish();
+                            dialog.dismiss();
                         }
                     }
                 });
+                dialog.show();
             }
         });
+    }
+    public String getCurrentTime(){
+        Date currentTiem= Calendar.getInstance().getTime();
+        SimpleDateFormat a =new SimpleDateFormat("MM-dd HH:mm");
+        return a.format(currentTiem);
     }
 }

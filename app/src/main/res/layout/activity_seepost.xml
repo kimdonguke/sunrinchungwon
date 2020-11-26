@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:textSize="30sp"
         android:text="제목 텍스트입니다"
+        android:textColor="#000000"
         />
     <TextView
         android:id="@+id/seepost_date"
@@ -46,39 +47,33 @@
                        android:layout_width="match_parent"
                        android:layout_height="match_parent"
                        android:text="서론입니다용~"
+                       android:layout_marginVertical="10dp"
                        />
                    <TextView
                        android:id="@+id/seepost_mainSubject"
                        android:layout_width="match_parent"
                        android:layout_height="match_parent"
                        android:text="본론입니다용~"
+                       android:layout_marginVertical="10dp"
                        />
                    <TextView
                        android:id="@+id/seepost_conclusion"
                        android:layout_width="match_parent"
                        android:layout_height="match_parent"
                        android:text="결론입니다용~"
+                       android:layout_marginVertical="10dp"
                        />
                </LinearLayout>
             </android.support.v7.widget.CardView>
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   app:layout_constraintTop_toTopOf="parent"
-                   app:layout_constraintLeft_toLeftOf="parent"
-                   app:layout_constraintRight_toRightOf="parent"
-                   >
                    <android.support.v7.widget.RecyclerView
                        android:id="@+id/seepost_recyclerview"
                        android:layout_width="match_parent"
                        android:layout_height="wrap_content"/>
-               </LinearLayout>
         </LinearLayout>
     </ScrollView>
     <LinearLayout
         android:id="@+id/seepost_comLayout"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seepost_cardview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"

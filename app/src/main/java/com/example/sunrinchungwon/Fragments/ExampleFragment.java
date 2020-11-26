@@ -1,12 +1,14 @@
 package com.example.sunrinchungwon.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,7 @@ import android.widget.Toast;
 import com.example.sunrinchungwon.Adapters.RecyclerViewAdapter;
 import com.example.sunrinchungwon.Activities.MainActivity;
 import com.example.sunrinchungwon.R;
+import com.example.sunrinchungwon.items.Code;
 import com.example.sunrinchungwon.items.recycler_item;
 
 
@@ -27,8 +30,6 @@ import java.util.Calendar;
 
 public class ExampleFragment extends Fragment {
 
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
     private RecyclerViewAdapter recyclerViewAdapter;
@@ -36,6 +37,7 @@ public class ExampleFragment extends Fragment {
     MainActivity mainActivity;
     SwipeRefreshLayout swipeRefreshLayout;
     ArrayList<recycler_item> recycler_item;
+    ArrayList<recycler_item> final_recycler_item;
 
     String fillter_string;
     String title;
@@ -46,16 +48,6 @@ public class ExampleFragment extends Fragment {
 
     public ExampleFragment() {
 
-    }
-
-
-    public static ExampleFragment newInstance(String param1, String param2) {
-        ExampleFragment fragment = new ExampleFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
@@ -70,65 +62,69 @@ public class ExampleFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_example, container, false);
         mainActivity = (MainActivity) getActivity();
         recyclerView = v.findViewById(R.id.recyclerView);
+
+        recycler_item = new ArrayList<>();
+        final_recycler_item=new ArrayList<>();
+
         linearLayoutManager = new LinearLayoutManager(mainActivity);
         recyclerView.addItemDecoration(new DividerItemDecoration(mainActivity, linearLayoutManager.getOrientation()));
         recyclerView.setLayoutManager(linearLayoutManager);
-       recycler_item = new ArrayList<>();
-        recycler_item.add(new recycler_item("김덕배", "010-1234-5678", "기모링!", "", "", ""));
+        recycler_item.add(new recycler_item("Fuckyou", getCurrentTime(), "기모링!", "", "", "",Code.TagClass.EVERYTHING));
         recyclerViewAdapter = new RecyclerViewAdapter(mainActivity, recycler_item);
         recyclerView.setAdapter(recyclerViewAdapter);
-        swipeRefreshLayout = v.findViewById(R.id.frag1_swipelayout);
 
+        final_recycler_item=recycler_item;
+
+        swipeRefreshLayout = v.findViewById(R.id.frag1_swipelayout);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 //새로고침 코드
-                recycler_item.add(new recycler_item("MainTitle", getCurrentTime(), "답변 안 됨", "", "", ""));
+                Log.d("onRefresh","start");
+                recycler_item.add(new recycler_item("MainTitle", getCurrentTime(), "답변 안 됨", "", "", "", Code.TagClass.GYM));
+                recycler_item.add(new recycler_item("MainTitle", getCurrentTime(), "답변 안 됨", "", "", "",Code.TagClass.EVERYTHING));
+                recycler_item.add(new recycler_item("MainTitle", getCurrentTime(), "답변 안 됨", "", "", "",Code.TagClass.HOGWAN3));
                 recyclerViewAdapter.notifyDataSetChanged();
                 swipeRefreshLayout.setRefreshing(false);
+                Log.d("onRefresh","end");
             }
         });
-
         mSpinner = v.findViewById(R.id.frag1_spinner);
         mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            String string = "이 선택되었습니다.";
-
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(mainActivity, (String) parent.getItemAtPosition(position) + string, Toast.LENGTH_SHORT).show();
+                Log.e("MainActivity",(String) parent.getItemAtPosition(position));
                 fillter_string = (String) parent.getItemAtPosition(position);
-
+                makeFillterItems(fillter_string);
+                recyclerViewAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
+                Toast.makeText(mainActivity, "Spinner-onNothingSelected", Toast.LENGTH_SHORT).show();
             }
         });
         return v;
     }
-    public void removeItem(String fillter_string){
-        for(int i=0;i<recycler_item.size();i++){
-            switch (fillter_string){
-                case "전체":
-//                        Toast.makeText(mainActivity,(String)parent.getItemAtPosition(position)+"was selected", Toast.LENGTH_SHORT).show();
-                    break;
-                case "1호관":
-//                        Toast.makeText(mainActivity,(String)parent.getItemAtPosition(position)+"was selected", Toast.LENGTH_SHORT).show();
-                    break;
-                case "2호관":
-//                        Toast.makeText(mainActivity,(String)parent.getItemAtPosition(position)+"was selected", Toast.LENGTH_SHORT).show();
-                    break;
-                case "3호관":
-//                        Toast.makeText(mainActivity,(String)parent.getItemAtPosition(position)+"was selected", Toast.LENGTH_SHORT).show();
-                    break;
-                case "4호관":
-//                        Toast.makeText(mainActivity,(String)parent.getItemAtPosition(position)+"was selected", Toast.LENGTH_SHORT).show();
-                    break;
-                case "체육관":
-//                        Toast.makeText(mainActivity,(String)parent.getItemAtPosition(position)+"was selected", Toast.LENGTH_SHORT).show();
-                    break;
+    public void makeFillterItems(String fillter_string){
+        Log.e("makeFillterItems",""+recycler_item.size());
+        ArrayList<recycler_item> arrayList=new ArrayList<>();
+        if(!(fillter_string.equals("전체"))){
+            for(int i=0; i<recycler_item.size(); i++){
+                if(recycler_item.get(i).getTag().equals(fillter_string)){
+                    Log.e("makeFillterItems",""+i);
+                    //바로 리무브 하면 위에 조건문에서 사이즈가 줄어버림.
+                    arrayList.add(recycler_item.get(i));
+
+                }
             }
+            recycler_item.clear();
+            for(int i=0;i<arrayList.size();i++){
+                recycler_item.add(arrayList.get(i));
+            }
+        }
+        else{
+
         }
     }
     public String getCurrentTime(){

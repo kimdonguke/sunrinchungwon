@@ -6,20 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".Activities.LoginActivity">
     <TextView
+        android:id="@+id/te9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textSize="40sp"
+        android:textColor="#000000"
+        />
+    <TextView
         android:id="@+id/te1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="아이디를 입력해주세욤"
-        android:textColor="#000000"
-        android:textSize="30sp"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/te9"
         android:layout_marginTop="20dp"
         />
     <EditText
         android:id="@+id/loginActivity_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="text your id"
         android:textColorHint="#000000"
         app:layout_constraintTop_toBottomOf="@+id/te1"
         />
@@ -28,8 +35,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="비밀번호를 입력해주세욤"
-        android:textColor="#000000"
-        android:textSize="30sp"
         app:layout_constraintTop_toBottomOf="@+id/te1"
         android:layout_marginTop="80dp"
         />
@@ -37,8 +42,6 @@
         android:id="@+id/loginActivity_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="text your password"
-        android:textColorHint="#000000"
         app:layout_constraintTop_toBottomOf="@+id/te2"
         />
     <Button

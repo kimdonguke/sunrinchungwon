@@ -12,18 +12,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-
         >
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            >
             <ImageView
+                android:src="@drawable/sunrincat1"
                 android:id="@+id/frag5_profile_view"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:background="#A09C9C"
+                android:layout_marginLeft="10dp"
                 />
             <TextView
                 android:id="@+id/frag5_userNickname"
@@ -32,6 +35,9 @@
                 android:text="User_NickName"
                 app:layout_constraintTop_toTopOf="@+id/frag5_profile_view"
                 app:layout_constraintLeft_toRightOf="@+id/frag5_profile_view"
+
+                android:textSize="30sp"
+                android:layout_marginLeft="10dp"
                 />
             <TextView
                 android:id="@+id/frag5_userName"
@@ -40,13 +46,119 @@
                 app:layout_constraintTop_toBottomOf="@+id/frag5_userNickname"
                 app:layout_constraintLeft_toLeftOf="@+id/frag5_userNickname"
                 android:text="User_Name"
+                android:textSize="25sp"
+                />
+            <Button
+                android:id="@+id/frag5_logoutBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginRight="7dp"
+                android:text="logout"
                 />
 
         </android.support.constraint.ConstraintLayout>
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/frag5_recyclerview"
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="Acheivement"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:layout_marginVertical="15dp"
+            />
+        <TextView
+            android:id="@+id/frag5_newStart_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="새로운시작"
+            android:gravity="center"
+            android:layout_marginVertical="5dp"
+            android:textColor="#000000"
+            />
+        <TextView
+            android:id="@+id/frag5_chun1_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="천릿길도 한 걸음부터"
+            android:layout_marginVertical="5dp"
+            android:textColor="#000000"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/frag5_chun2_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="천릿길도 열 걸음부터"
+            android:layout_marginVertical="5dp"
+            android:textColor="#000000"
+            android:gravity="center"
+            />
+        <TextView
+            android:id="@+id/frag5_chun3_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="천릿길도 백 걸음부터"
+            android:layout_marginVertical="5dp"
+            android:textColor="#000000"
+            android:gravity="center"
+            />
+        <TextView
+            android:id="@+id/frag5_chun4_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="천릿길도 천 걸음부터"
+            android:layout_marginVertical="5dp"
+            android:textColor="#000000"
+            android:gravity="center"
+            />
+        <TextView
+            android:id="@+id/frag5_jangmun_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="장문충"
+            android:layout_marginVertical="5dp"
+            android:textColor="#000000"
+            android:gravity="center"
+            />
+        <TextView
+            android:id="@+id/frag5_nandok_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="난독충"
+            android:layout_marginVertical="5dp"
+            android:textColor="#000000"
+            android:gravity="center"
+            />
+        <TextView
+            android:id="@+id/frag5_jungyee"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="정의로운시민"
+            android:layout_marginVertical="5dp"
+            android:textColor="#000000"
+            android:gravity="center"
+            />
+        <TextView
+            android:id="@+id/frag5_baljuun"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="학교의 발전"
+            android:layout_marginVertical="5dp"
+            android:textColor="#000000"
+            android:gravity="center"
+            />
+        <TextView
+            android:id="@+id/frag5_itutnunde"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="있었는데요? 없었습니다."
+            android:layout_marginVertical="5dp"
+            android:textColor="#000000"
+            android:gravity="center"
+            />
     </LinearLayout>
 </ScrollView>
 </LinearLayout>

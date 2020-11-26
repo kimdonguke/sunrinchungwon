@@ -1,100 +1,111 @@
 package com.example.sunrinchungwon.Fragments;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.sunrinchungwon.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link Example5Fragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link Example5Fragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class Example5Fragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    private OnFragmentInteractionListener mListener;
+public class Example5Fragment extends Fragment implements View.OnClickListener{
+    TextView sijak,chun1,chun2,chun3,chun4,jangmun,nandok,jungyee,baljun,itutnunde;
 
     public Example5Fragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Example5Fragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Example5Fragment newInstance(String param1, String param2) {
-        Example5Fragment fragment = new Example5Fragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_example5, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_example5, container, false);
+        sijak=view.findViewById(R.id.frag5_newStart_tv);
+        chun1=view.findViewById(R.id.frag5_chun1_tv);
+        chun2=view.findViewById(R.id.frag5_chun2_tv);
+        chun3=view.findViewById(R.id.frag5_chun3_tv);
+        chun4=view.findViewById(R.id.frag5_chun4_tv);
+        jangmun=view.findViewById(R.id.frag5_jangmun_tv);
+        nandok=view.findViewById(R.id.frag5_nandok_tv);
+        jungyee=view.findViewById(R.id.frag5_jungyee);
+        baljun=view.findViewById(R.id.frag5_baljuun);
+        itutnunde=view.findViewById(R.id.frag5_itutnunde);
+
+        sijak.setOnClickListener(this);
+        chun1.setOnClickListener(this);
+        chun2.setOnClickListener(this);
+        chun3.setOnClickListener(this);
+        chun4.setOnClickListener(this);
+        jangmun.setOnClickListener(this);
+        nandok.setOnClickListener(this);
+        jungyee.setOnClickListener(this);
+        baljun.setOnClickListener(this);
+        itutnunde.setOnClickListener(this);
+        return view;
     }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-
 
     @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
+    public void onClick(View v) {
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        switch (v.getId()){
+            case R.id.frag5_chun1_tv:
+                makeDialog(chun1.getText().toString(),getString(R.string.chun1));
+                break;
+            case R.id.frag5_chun2_tv:
+                makeDialog(chun2.getText().toString(),getString(R.string.chun2));
+                break;
+            case R.id.frag5_chun3_tv:
+                makeDialog(chun3.getText().toString(),getString(R.string.chun3));
+                break;
+            case R.id.frag5_chun4_tv:
+                makeDialog(chun4.getText().toString(),getString(R.string.chun4));
+                break;
+            case R.id.frag5_newStart_tv:
+                makeDialog(sijak.getText().toString(),getString(R.string.sijak));
+                break;
+            case R.id.frag5_jangmun_tv:
+                makeDialog(jangmun.getText().toString(),getString(R.string.jangmun));
+                break;
+            case R.id.frag5_nandok_tv:
+                makeDialog(nandok.getText().toString(),getString(R.string.nandok));
+                break;
+            case R.id.frag5_jungyee:
+                makeDialog(jungyee.getText().toString(),getString(R.string.jungyee));
+                break;
+            case R.id.frag5_baljuun:
+                makeDialog(baljun.getText().toString(),getString(R.string.baljuun));
+                break;
+            case  R.id.frag5_itutnunde:
+                makeDialog(itutnunde.getText().toString(),getString(R.string.itutnunde));
+                break;
+        }
+        Log.e("frag5","view on clicked");
     }
+    public void makeDialog(String title,String content){
+        Log.e("frag5",title+content);
+        AlertDialog.Builder builder =new AlertDialog.Builder(getContext());
+        builder.setTitle(title);
+        builder.setMessage(content);
+        builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        builder.create();
+        builder.show();
+    }
+    //textView.setPaintFlags(textView.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG); 취소선 긋기
+    //textView.setPaintFlags(0); 취소선 제거
 }

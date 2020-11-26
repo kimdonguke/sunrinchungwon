@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="nicknames">
+        <item >급식먹는</item>
+        <item >매점가는</item>
+        <item >전공버린</item>
+        <item >내신챙긴</item>
+        <item >자고있는</item>
+        <item >몰폰하는</item>
+        <item>장실가는</item>
+        <item>트롤하는</item>
+        <item>버스타는</item>
+        <item>농구하는</item>
+        <item>축구하는</item>
+        <item>탁구하는</item>
+        <item>개발하는</item>
+        <item>디코하는</item>
+        <item>플렉스하는</item>
+        <item>외주하는</item>
+        <item>얌샘가는</item>
+        <item>디자인하는</item>
+        <item>해킹하는</item>
+        <item>춤추는</item>
+        <item>공부하는</item>
+        <item>정시하는</item>
+        <item>무명의</item>
+        <item>익명의</item>
+        <item>지나가던</item>
+        <item>헬스하는</item>
+        <item>자가진단하는</item>
+    </string-array>
+</resources>

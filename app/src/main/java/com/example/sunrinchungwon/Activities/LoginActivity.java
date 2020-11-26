@@ -10,7 +10,7 @@ import com.example.sunrinchungwon.R;
 
 public class LoginActivity extends AppCompatActivity {
     Button toMainActivity_btn, toSignUpActivity_btn;
-    Intent intent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,21 +21,20 @@ public class LoginActivity extends AppCompatActivity {
         toMainActivity_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent=new Intent(getBaseContext(),MainActivity.class);
-                intent.setFlags(intent.FLAG_ACTIVITY_CLEAR_TASK);
+                Intent intent;
+                intent=new Intent(getApplicationContext(),MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
+                LoginActivity.this.finish();
             }
         });
         toSignUpActivity_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent=new Intent(getBaseContext(),SignUpActivity.class);
+                Intent intent;
+                intent=new Intent(getApplicationContext(),SignUpActivity.class);
                 startActivity(intent);
             }
         });
-        init();
-    }
-    void init(){
-
     }
 }
