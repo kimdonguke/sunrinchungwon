@@ -45,7 +45,7 @@
             android:id="@+id/signin_userId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:inputType="textEmailAddress"
             />
     </LinearLayout>
     <LinearLayout
@@ -63,6 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLength="16"
+            android:inputType="textPassword"
             />
     </LinearLayout>
     <Button

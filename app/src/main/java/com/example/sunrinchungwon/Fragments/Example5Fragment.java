@@ -2,6 +2,7 @@ package com.example.sunrinchungwon.Fragments;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import android.util.Log;
@@ -15,6 +16,7 @@ import com.example.sunrinchungwon.R;
 
 public class Example5Fragment extends Fragment implements View.OnClickListener{
     TextView sijak,chun1,chun2,chun3,chun4,jangmun,nandok,jungyee,baljun,itutnunde;
+    SharedPreferences sharedPreferences;
 
     public Example5Fragment() {
         // Required empty public constructor
@@ -55,7 +57,7 @@ public class Example5Fragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-
+        //등록 횟수 shared 에 있어야 할 듯
         switch (v.getId()){
             case R.id.frag5_chun1_tv:
                 makeDialog(chun1.getText().toString(),getString(R.string.chun1));

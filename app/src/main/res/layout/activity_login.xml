@@ -29,6 +29,7 @@
         android:layout_height="wrap_content"
         android:textColorHint="#000000"
         app:layout_constraintTop_toBottomOf="@+id/te1"
+        android:inputType="textEmailAddress"
         />
     <TextView
         android:id="@+id/te2"
@@ -43,6 +44,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/te2"
+        android:inputType="textPassword"
+        android:maxLength="16"
         />
     <Button
         android:id="@+id/loginActivity_idBtn"

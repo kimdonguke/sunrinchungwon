@@ -20,6 +20,13 @@ import com.example.sunrinchungwon.Activities.MainActivity;
 import com.example.sunrinchungwon.R;
 import com.example.sunrinchungwon.items.Code;
 import com.example.sunrinchungwon.items.recycler_item;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 
 import java.text.SimpleDateFormat;
@@ -44,6 +51,10 @@ public class ExampleFragment extends Fragment {
     String isResponed;
     private Context context = getContext();
 
+    private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
+    private static FirebaseDatabase database;
+    private static FirebaseFirestore firebaseFirestore;
 
     public ExampleFragment() {
 
@@ -52,7 +63,13 @@ public class ExampleFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mAuth=FirebaseAuth.getInstance();
+        database=FirebaseDatabase.getInstance();
+        firebaseFirestore=FirebaseFirestore.getInstance();
+        Init();
+    }
 
+    private void Init() {
     }
 
     @Override
@@ -68,7 +85,7 @@ public class ExampleFragment extends Fragment {
         linearLayoutManager = new LinearLayoutManager(mainActivity);
         recyclerView.addItemDecoration(new DividerItemDecoration(mainActivity, linearLayoutManager.getOrientation()));
         recyclerView.setLayoutManager(linearLayoutManager);
-        recycler_item.add(new recycler_item("Fuckyou", getCurrentTime(), "기모링!", "", "", "",Code.TagClass.EVERYTHING));
+        recycler_item.add(new recycler_item("학교가 너무 낡았어요", getCurrentTime(), "답변 안 됨", "학교가 너무너무 낡았어요. 그래서 고쳐야 할 것 같아요", "학교가 기울어져서 어쩌구 저쩌구", "꼭좀 고쳐주세요",Code.TagClass.EVERYTHING));
         recyclerViewAdapter = new RecyclerViewAdapter(mainActivity, recycler_item);
         recyclerView.setAdapter(recyclerViewAdapter);
 
@@ -80,9 +97,6 @@ public class ExampleFragment extends Fragment {
             public void onRefresh() {
                 //새로고침 코드
                 Log.d("onRefresh","start");
-                recycler_item.add(new recycler_item("MainTitle", getCurrentTime(), "답변 안 됨", "", "", "", Code.TagClass.GYM));
-                recycler_item.add(new recycler_item("MainTitle", getCurrentTime(), "답변 안 됨", "", "", "",Code.TagClass.EVERYTHING));
-                recycler_item.add(new recycler_item("MainTitle", getCurrentTime(), "답변 안 됨", "", "", "",Code.TagClass.HOGWAN3));
                 recyclerViewAdapter.notifyDataSetChanged();
                 swipeRefreshLayout.setRefreshing(false);
                 Log.d("onRefresh","end");
@@ -94,7 +108,6 @@ public class ExampleFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Log.e("MainActivity",(String) parent.getItemAtPosition(position));
                 fillter_string = (String) parent.getItemAtPosition(position);
-                makeFillterItems(fillter_string);
                 recyclerViewAdapter.notifyDataSetChanged();
             }
 
@@ -104,27 +117,6 @@ public class ExampleFragment extends Fragment {
             }
         });
         return v;
-    }
-    public void makeFillterItems(String fillter_string){
-        Log.e("makeFillterItems",""+recycler_item.size());
-        ArrayList<recycler_item> arrayList=new ArrayList<>();
-        if(!(fillter_string.equals("전체"))){
-            for(int i=0; i<recycler_item.size(); i++){
-                if(recycler_item.get(i).getTag().equals(fillter_string)){
-                    Log.e("makeFillterItems",""+i);
-                    //바로 리무브 하면 위에 조건문에서 사이즈가 줄어버림.
-                    arrayList.add(recycler_item.get(i));
-
-                }
-            }
-            recycler_item.clear();
-            for(int i=0;i<arrayList.size();i++){
-                recycler_item.add(arrayList.get(i));
-            }
-        }
-        else{
-
-        }
     }
     public String getCurrentTime(){
         Date currentTiem= Calendar.getInstance().getTime();

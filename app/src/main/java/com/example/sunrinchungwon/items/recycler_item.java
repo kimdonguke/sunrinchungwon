@@ -11,7 +11,7 @@ public class recycler_item {
 
     public recycler_item(String title, String date, String isResponed, String introduction, String mainSubject, String conclusion, String tag) {
         this.title = title;
-        this.date = date+"   "+tag;
+        this.date = date;
         this.isResponed = isResponed;
         this.introduction = introduction;
         this.mainSubject = mainSubject;
