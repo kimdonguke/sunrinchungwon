@@ -1,6 +1,13 @@
 package com.example.sunrinchungwon.items;
 
 public class recycler_item {
+    public static final String FIELD_TITLE = "title";
+    public static final String FIELD_DATE = "date";
+    public static final String FIELD_ISRESPONED = "isResponed";
+    public static final String FIELD_TAG = "tag";
+    public static final String FIELD_INTRODUCTION = "introduction";
+    public static final String FIELD_MAINSUBJECT = "mainSubject";
+    public static final String FIELD_CONCLUSION = "conclusion";
     String title;
     String date;
     String isResponed;

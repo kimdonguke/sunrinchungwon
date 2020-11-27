@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.LoadingActivity">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="로딩중"
-        android:gravity="center"
-        android:textSize="30sp"
-        />
+    tools:context=".Activities.LoadingActivity"
+    android:background="#ffffff"
+    >
+<ImageView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:src="@drawable/logo"
+    />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

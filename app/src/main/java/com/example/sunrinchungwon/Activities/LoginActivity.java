@@ -77,12 +77,10 @@ public class LoginActivity extends AppCompatActivity {
         Toast.makeText(LoginActivity.this,"연결이 해제되었습니다",Toast.LENGTH_SHORT).show();
     }
     public void loginStart(String email, String password){
-        Toast.makeText(LoginActivity.this,"loginStart 함수 안으로" ,Toast.LENGTH_SHORT).show();
         mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
 
-                Toast.makeText(LoginActivity.this,"mAuth. onComplete 함수" ,Toast.LENGTH_SHORT).show();
                 if (!task.isSuccessful()) {
                     try {
                         throw task.getException();
@@ -101,8 +99,6 @@ public class LoginActivity extends AppCompatActivity {
 
                     currentUser = mAuth.getCurrentUser();
 
-                    Toast.makeText(LoginActivity.this, "로그인 성공" + "/" + currentUser.getEmail() + "/" + currentUser.getUid() ,Toast.LENGTH_SHORT).show();
-
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     finish();
                 }
@@ -110,16 +106,15 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-
     //로그아웃 안했으면, 즉 로그인 되어있으면 자동으로 메인페이지로 이동시키기
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-            finish();
-        }
-    }
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        // Check if user is signed in (non-null) and update UI accordingly.
+//        currentUser = mAuth.getCurrentUser();
+//        if(currentUser != null){
+//            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+//            finish();
+//        }
+//    }
 }

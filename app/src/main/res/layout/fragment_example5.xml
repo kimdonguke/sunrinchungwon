@@ -5,9 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -68,97 +66,115 @@
             android:gravity="center"
             android:layout_marginVertical="15dp"
             />
-        <TextView
-            android:id="@+id/frag5_newStart_tv"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="새로운시작"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
             android:gravity="center"
-            android:layout_marginVertical="5dp"
-            android:textColor="#000000"
-            />
-        <TextView
-            android:id="@+id/frag5_chun1_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="천릿길도 한 걸음부터"
-            android:layout_marginVertical="5dp"
-            android:textColor="#000000"
-            android:gravity="center"
-            />
+            android:weightSum="10"
+            >
 
-        <TextView
-            android:id="@+id/frag5_chun2_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="천릿길도 열 걸음부터"
-            android:layout_marginVertical="5dp"
-            android:textColor="#000000"
-            android:gravity="center"
-            />
-        <TextView
-            android:id="@+id/frag5_chun3_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="천릿길도 백 걸음부터"
-            android:layout_marginVertical="5dp"
-            android:textColor="#000000"
-            android:gravity="center"
-            />
-        <TextView
-            android:id="@+id/frag5_chun4_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="천릿길도 천 걸음부터"
-            android:layout_marginVertical="5dp"
-            android:textColor="#000000"
-            android:gravity="center"
-            />
-        <TextView
-            android:id="@+id/frag5_jangmun_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="장문충"
-            android:layout_marginVertical="5dp"
-            android:textColor="#000000"
-            android:gravity="center"
-            />
-        <TextView
-            android:id="@+id/frag5_nandok_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="난독충"
-            android:layout_marginVertical="5dp"
-            android:textColor="#000000"
-            android:gravity="center"
-            />
-        <TextView
-            android:id="@+id/frag5_jungyee"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="정의로운시민"
-            android:layout_marginVertical="5dp"
-            android:textColor="#000000"
-            android:gravity="center"
-            />
-        <TextView
-            android:id="@+id/frag5_baljuun"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="학교의 발전"
-            android:layout_marginVertical="5dp"
-            android:textColor="#000000"
-            android:gravity="center"
-            />
-        <TextView
-            android:id="@+id/frag5_itutnunde"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="있었는데요? 없었습니다."
-            android:layout_marginVertical="5dp"
-            android:textColor="#000000"
-            android:gravity="center"
-            />
+            <TextView
+                android:id="@+id/frag5_newStart_tv"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="새로운시작"
+                android:gravity="center"
+                android:layout_marginVertical="5dp"
+                android:textColor="#000000"
+                />
+            <TextView
+                android:id="@+id/frag5_chun1_tv"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="천릿길도 한 걸음부터"
+                android:layout_marginVertical="5dp"
+                android:textColor="#000000"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:id="@+id/frag5_chun2_tv"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="천릿길도 열 걸음부터"
+                android:layout_marginVertical="5dp"
+                android:textColor="#000000"
+                android:gravity="center"
+                />
+            <TextView
+                android:id="@+id/frag5_chun3_tv"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="천릿길도 백 걸음부터"
+                android:layout_marginVertical="5dp"
+                android:textColor="#000000"
+                android:gravity="center"
+                />
+            <TextView
+                android:id="@+id/frag5_chun4_tv"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="천릿길도 천 걸음부터"
+                android:layout_marginVertical="5dp"
+                android:textColor="#000000"
+                android:gravity="center"
+                />
+            <TextView
+                android:id="@+id/frag5_jangmun_tv"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="장문충"
+                android:layout_marginVertical="5dp"
+                android:textColor="#000000"
+                android:gravity="center"
+                />
+            <TextView
+                android:id="@+id/frag5_nandok_tv"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="난독충"
+                android:layout_marginVertical="5dp"
+                android:textColor="#000000"
+                android:gravity="center"
+                />
+            <TextView
+                android:id="@+id/frag5_jungyee"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="정의로운시민"
+                android:layout_marginVertical="5dp"
+                android:textColor="#000000"
+                android:gravity="center"
+                />
+            <TextView
+                android:id="@+id/frag5_baljuun"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="학교의 발전"
+                android:layout_marginVertical="5dp"
+                android:textColor="#000000"
+                android:gravity="center"
+                />
+            <TextView
+                android:id="@+id/frag5_itutnunde"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="있었는데요? 없었습니다."
+                android:layout_marginVertical="5dp"
+                android:textColor="#000000"
+                android:gravity="center"
+                />
+        </LinearLayout>
+
     </LinearLayout>
-</ScrollView>
 </LinearLayout>

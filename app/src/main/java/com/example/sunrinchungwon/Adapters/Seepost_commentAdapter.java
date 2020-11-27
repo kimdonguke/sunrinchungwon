@@ -53,7 +53,7 @@ public class Seepost_commentAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         }
         else{
             ((ViewHolder_proscon)viewHolder).title.setText(items.get(position).getTitle());
-            ((ViewHolder_proscon)viewHolder).content.setText(items.get(position).getContent().substring(0,9)+"....");
+            ((ViewHolder_proscon)viewHolder).content.setText(items.get(position).getContent());
             Log.e("onVindViewHolder",items.get(position).getContent());
         }
     }
@@ -71,8 +71,8 @@ public class Seepost_commentAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             super(itemView);
             title=itemView.findViewById(R.id.seepost_proscon_title);
             content=itemView.findViewById(R.id.seepost_proscon_contents);
-            seemoreBtn=itemView.findViewById(R.id.seepost_proscon_seemore);
-            dialogBtn=itemView.findViewById(R.id.seepost_proscon_dialogue);
+            seemoreBtn=itemView.findViewById(R.id.seepost_proscon_positive);
+            dialogBtn=itemView.findViewById(R.id.seepost_proscon_negative);
             random_image=itemView.findViewById(R.id.seepost_proscon_image);
             dialogBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -85,7 +85,8 @@ public class Seepost_commentAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                 public void onClick(View v) {
                     int pos = getAdapterPosition();
                     if(pos != RecyclerView.NO_POSITION){
-                        items.set(pos,items.get(pos));
+                        // 아이템의 안에 알파콘텐츠를 불러와서 원래 뷰에 홀딩시키기
+                        items.get(pos).setContent(items.get(pos).getAlpha_contents());
                         notifyItemChanged(pos);
                     }
                 }

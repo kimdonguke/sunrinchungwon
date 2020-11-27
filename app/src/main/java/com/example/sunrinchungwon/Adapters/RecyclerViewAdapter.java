@@ -3,6 +3,8 @@ package com.example.sunrinchungwon.Adapters;
 import android.app.Activity;
 import android.content.Intent;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,8 @@ import android.widget.Toast;
 import com.example.sunrinchungwon.R;
 import com.example.sunrinchungwon.Activities.SeepostActivity;
 import com.example.sunrinchungwon.items.recycler_item;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
 
@@ -20,11 +24,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private Activity activity;
     private ArrayList<recycler_item> recycler_item;
     private Intent intent;
-    private String introduction, mainSubject,conclusion;
+    private String introduction, mainSubject,conclusion,tag;
 
-    public RecyclerViewAdapter(Activity activity, ArrayList<recycler_item> recycler_item) {
+    public RecyclerViewAdapter(Activity activity, ArrayList<recycler_item> recycler_item){
+            //, Query query,OnPostSelectedListener listener) {
+        //super(query);
         this.activity = activity;
         this.recycler_item = recycler_item;
+        //this.mListener=listener;
     }
 
     @Override
@@ -54,19 +61,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     intent.putExtra("introduction",introduction);
                     intent.putExtra("mainSubject",mainSubject);
                     intent.putExtra("conclusion",conclusion);
+                    intent.putExtra("tag",tag);
                     activity.startActivity(intent);
                 }
             });
-
-//            itemView.setOnLongClickListener(new View.OnLongClickListener() {
-//                @Override
-//                public boolean onLongClick(View view) {
-//                    Toast.makeText(activity, "remove " +
-//                            recycler_item.get(getAdapterPosition()).getTitle(), Toast.LENGTH_SHORT).show();
-//                    removeItemView(getAdapterPosition());
-//                    return false;
-//                }
-//            });
         }
     }
 
@@ -88,6 +86,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         introduction=data.getIntroduction();
         mainSubject=data.getMainSubject();
         conclusion=data.getConclusion();
+        tag=data.getTag();
     }
 
     private void removeItemView(int position) {

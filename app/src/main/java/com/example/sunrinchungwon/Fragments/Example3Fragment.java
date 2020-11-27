@@ -34,10 +34,6 @@ public class Example3Fragment extends Fragment {
     String fillter;
     String title_str,intro_str,mainsub_str,conclu_str;
 
-
-    private FirebaseAuth mAuth;
-    private FirebaseUser currentUser;
-    private static FirebaseDatabase database;
     private FirebaseFirestore firebaseFirestore;
 
 
@@ -81,6 +77,10 @@ public class Example3Fragment extends Fragment {
                             recycler_item tofireItem=new recycler_item(title_str,getCurrentTime(),getString(R.string.not_answered),intro_str,mainsub_str,conclu_str,fillter);
                             collectionReference.add(tofireItem);
                             //파베에 값올리기
+                            title.setText("");
+                            introduction.setText("");
+                            mainSubject.setText("");
+                            conclusion.setText("");
                         }
                     });
                     builder.setNegativeButton("아니요", new DialogInterface.OnClickListener() {

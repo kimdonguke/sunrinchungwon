@@ -2,6 +2,7 @@ package com.example.sunrinchungwon.Fragments;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
@@ -9,15 +10,23 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.sunrinchungwon.Activities.LoginActivity;
+import com.example.sunrinchungwon.Activities.MainActivity;
 import com.example.sunrinchungwon.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class Example5Fragment extends Fragment implements View.OnClickListener{
     TextView sijak,chun1,chun2,chun3,chun4,jangmun,nandok,jungyee,baljun,itutnunde;
+    Button logoutBtn;
     SharedPreferences sharedPreferences;
-
+    TextView tv_Username,tv_Usernickname;
+    private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
     public Example5Fragment() {
         // Required empty public constructor
     }
@@ -26,6 +35,8 @@ public class Example5Fragment extends Fragment implements View.OnClickListener{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mAuth=FirebaseAuth.getInstance();
+        currentUser=mAuth.getCurrentUser();
     }
 
     @Override
@@ -41,6 +52,9 @@ public class Example5Fragment extends Fragment implements View.OnClickListener{
         jungyee=view.findViewById(R.id.frag5_jungyee);
         baljun=view.findViewById(R.id.frag5_baljuun);
         itutnunde=view.findViewById(R.id.frag5_itutnunde);
+        logoutBtn=view.findViewById(R.id.frag5_logoutBtn);
+        tv_Username=view.findViewById(R.id.frag5_userName);
+        tv_Usernickname=view.findViewById(R.id.frag5_userNickname);
 
         sijak.setOnClickListener(this);
         chun1.setOnClickListener(this);
@@ -52,6 +66,22 @@ public class Example5Fragment extends Fragment implements View.OnClickListener{
         jungyee.setOnClickListener(this);
         baljun.setOnClickListener(this);
         itutnunde.setOnClickListener(this);
+        try {
+            tv_Username.setText(currentUser.getDisplayName());
+            tv_Usernickname.setText("귀여운 솦과");
+        }catch (Exception e){
+
+        }
+
+        logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent=new Intent(getContext(), LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        });
         return view;
     }
 

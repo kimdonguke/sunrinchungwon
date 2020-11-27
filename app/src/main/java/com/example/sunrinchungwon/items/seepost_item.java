@@ -3,7 +3,7 @@ package com.example.sunrinchungwon.items;
 import java.util.Date;
 
 public class seepost_item {
-    String title,content,userId,date;
+    String title,content,alpha_contents,userId,date;
     private int viewType;
 
     public String getUserId() {
@@ -26,6 +26,10 @@ public class seepost_item {
         return viewType;
     }
 
+    public String getAlpha_contents() {
+        return alpha_contents;
+    }
+
     public seepost_item(String title, String content, int viewType) {
         if(viewType==Code.ViewType.AGREE_CONTENT){
             userId=title;
@@ -33,7 +37,13 @@ public class seepost_item {
         }
         else{
             this.title=title;
-            this.content=content;
+            if(content.length()>10){
+                this.content=content.substring(0,9)+"....";
+            }
+            else{
+                this.content=content;
+                alpha_contents=content;
+            }
         }
         this.viewType = viewType;
     }

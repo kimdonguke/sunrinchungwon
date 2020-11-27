@@ -89,10 +89,12 @@ public class SeepostActivity extends AppCompatActivity {
                         if(titleEdit.getText().toString().equals("")||contentsEdit.getText().toString().equals("")){
                             Toast.makeText(SeepostActivity.this, "내용을 입력해주세요", Toast.LENGTH_SHORT).show();
                         }
+                        else if (contentsEdit.getText().toString().length()<10){
+                            Toast.makeText(SeepostActivity.this, "내용이 너무 짧아요 ㅠ", Toast.LENGTH_SHORT).show();
+                        }
                         else{
                             dataList.add(new seepost_item(titleEdit.getText().toString(),contentsEdit.getText().toString(),Code.ViewType.PROSCON_CONTENT));
                             adapter.notifyDataSetChanged();
-                            dialog.dismiss();
                         }
                     }
                 });

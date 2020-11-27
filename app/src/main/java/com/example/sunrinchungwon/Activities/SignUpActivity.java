@@ -5,6 +5,8 @@ import android.content.Intent;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +23,7 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -59,9 +62,8 @@ public class SignUpActivity extends AppCompatActivity {
         mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                Context context=getApplicationContext();
+                final Context context=getApplicationContext();
                 if(!task.isSuccessful()) {
-
                     try {
                         throw task.getException();
                     } catch(FirebaseAuthWeakPasswordException e) {
@@ -71,11 +73,22 @@ public class SignUpActivity extends AppCompatActivity {
                     } catch(FirebaseAuthUserCollisionException e) {
                         Toast.makeText(context,"이미존재하는 email 입니다." ,Toast.LENGTH_SHORT).show();
                     } catch(Exception e) {
-                        Toast.makeText(context,"다시 확인해주세요.." ,Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context,""+e ,Toast.LENGTH_SHORT).show();
                     }
                 }else {
+                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                            .setDisplayName(name)
+                            .build();
 
                     currentUser = mAuth.getCurrentUser();
+                    currentUser.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()){
+                                Toast.makeText(context, "가입, 성공적", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
 
                     Toast.makeText(context, "가입 성공  " + name + currentUser.getEmail() + "/" + currentUser.getUid(), Toast.LENGTH_SHORT).show();
 
