@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "744680508899",
+    "firebase_url": "https://suapp-6b1f9.firebaseio.com",
+    "project_id": "suapp-6b1f9",
+    "storage_bucket": "suapp-6b1f9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:744680508899:android:3e0d4fce2b273a23ca24d6",
+        "android_client_info": {
+          "package_name": "com.example.sunrinchungwon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "744680508899-qoc75rul05bgtnev648s0djimqa7q6df.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeFn01EXsRG6hS6m5ujaWHQj_lxSfYwrw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "744680508899-qoc75rul05bgtnev648s0djimqa7q6df.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
