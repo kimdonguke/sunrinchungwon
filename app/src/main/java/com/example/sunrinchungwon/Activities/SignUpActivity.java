@@ -85,13 +85,10 @@ public class SignUpActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
-                                Toast.makeText(context, "가입, 성공적", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "가입, 성공적"+currentUser.getDisplayName(), Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
-
-                    Toast.makeText(context, "가입 성공  " + name + currentUser.getEmail() + "/" + currentUser.getUid(), Toast.LENGTH_SHORT).show();
-
                     startActivity(new Intent(context, LoginActivity.class));
                     finish();
                 }

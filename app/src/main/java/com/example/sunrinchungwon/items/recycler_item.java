@@ -1,5 +1,9 @@
 package com.example.sunrinchungwon.items;
 
+import com.google.firebase.Timestamp;
+
+import java.sql.Time;
+
 public class recycler_item {
     public static final String FIELD_TITLE = "title";
     public static final String FIELD_DATE = "date";
@@ -9,21 +13,24 @@ public class recycler_item {
     public static final String FIELD_MAINSUBJECT = "mainSubject";
     public static final String FIELD_CONCLUSION = "conclusion";
     String title;
-    String date;
     String isResponed;
     String introduction;//서론
     String mainSubject;//본론
     String conclusion;//결론
     String tag;
+    Timestamp date;
 
-    public recycler_item(String title, String date, String isResponed, String introduction, String mainSubject, String conclusion, String tag) {
+    public recycler_item(String title, Timestamp timestamp , String isResponed, String introduction, String mainSubject, String conclusion, String tag) {
         this.title = title;
-        this.date = date;
         this.isResponed = isResponed;
         this.introduction = introduction;
         this.mainSubject = mainSubject;
         this.conclusion = conclusion;
         this.tag = tag;
+        this.date = timestamp;
+    }
+
+    public recycler_item() {
     }
 
     public String getTitle() {
@@ -34,11 +41,12 @@ public class recycler_item {
         this.title = title;
     }
 
-    public String getDate() {
+    public Timestamp getDate() {
+
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Timestamp date) {
         this.date = date;
     }
 

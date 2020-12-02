@@ -39,6 +39,7 @@ public class seepost_item {
             this.title=title;
             if(content.length()>10){
                 this.content=content.substring(0,9)+"....";
+                alpha_contents=content;
             }
             else{
                 this.content=content;

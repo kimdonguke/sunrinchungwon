@@ -1,7 +1,6 @@
 package com.example.sunrinchungwon.Fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,33 +17,29 @@ import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.sunrinchungwon.Activities.SeepostActivity;
 import com.example.sunrinchungwon.Adapters.RecyclerViewAdapter;
 import com.example.sunrinchungwon.Activities.MainActivity;
 import com.example.sunrinchungwon.R;
-import com.example.sunrinchungwon.items.Code;
 import com.example.sunrinchungwon.items.recycler_item;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class ExampleFragment extends Fragment{
 
@@ -56,7 +51,7 @@ public class ExampleFragment extends Fragment{
 
     MainActivity mainActivity;
     SwipeRefreshLayout swipeRefreshLayout;
-    ArrayList<recycler_item> recycler_item;
+    ArrayList<recycler_item> recycler_items;
     ArrayList<recycler_item> final_recycler_item;
 
     String fillter_string;
@@ -88,16 +83,36 @@ public class ExampleFragment extends Fragment{
         mainActivity = (MainActivity) getActivity();
         recyclerView = v.findViewById(R.id.recyclerView);
 
-        recycler_item = new ArrayList<>();
+        recycler_items = new ArrayList<>();
         final_recycler_item=new ArrayList<>();
-        final_recycler_item=recycler_item;
+
         initRecyclerView();
+        for(int i = 0; i<recycler_items.size();i++){
+            Log.e("in formoon",recycler_items.get(i).getIntroduction());
+        }
 
         swipeRefreshLayout = v.findViewById(R.id.frag1_swipelayout);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 //새로고침 코드
+                recycler_items.clear();
+                firebaseFirestore.collection("post").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()){
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Timestamp timestamp = document.getTimestamp("date");
+                                recycler_items.add(new recycler_item("" + document.get("title"), timestamp, "" + document.get("isResponed"), "" + document.get("introduction"), "" + document.get("mainSubject"), "" + document.get("conclusion"), "" + document.get("tag")));
+                                Log.d("frag",""+document.get("tag"));
+                                recyclerViewAdapter.notifyDataSetChanged();
+                            }
+                        }
+                        else {
+                            Log.d("frag", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
                 Log.d("onRefresh","start");
                 recyclerViewAdapter.notifyDataSetChanged();
                 swipeRefreshLayout.setRefreshing(false);
@@ -110,7 +125,32 @@ public class ExampleFragment extends Fragment{
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Log.e("MainActivity",(String) parent.getItemAtPosition(position));
                 fillter_string = (String) parent.getItemAtPosition(position);
-                //recyclerViewAdapter.notifyDataSetChanged();
+                recycler_items.clear();
+                firebaseFirestore.collection("post").orderBy("date", Query.Direction.ASCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()){
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d("frag", document.getId() + " => " + document.get("title"));
+                                try {
+                                    if(document.get("tag")==fillter_string) {
+                                        Timestamp timestamp = document.getTimestamp("date");
+                                        recycler_items.add(new recycler_item("" + document.get("title"), timestamp, "" + document.get("isResponed"), "" + document.get("introduction"), "" + document.get("mainSubject"), "" + document.get("conclusion"), "" + document.get("tag")));
+                                        Log.e("frag", "" + document.get("tag"));
+                                        recyclerViewAdapter.notifyDataSetChanged();
+                                    }
+                                }
+                                catch (Exception e){
+                                    Toast.makeText(mainActivity, "loading failed", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }
+                        else {
+                            Log.d("frag", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+                recyclerViewAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -120,35 +160,42 @@ public class ExampleFragment extends Fragment{
         });
         return v;
     }
-    public String getCurrentTime(){
-        Date currentTiem= Calendar.getInstance().getTime();
-        SimpleDateFormat a =new SimpleDateFormat("MM-dd HH:mm");
-        return a.format(currentTiem);
-    }
+
     private void initFirestore() {
         firebaseFirestore = FirebaseFirestore.getInstance();
     }
     private void initRecyclerView() {
-        firebaseFirestore.collection("post").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        firebaseFirestore.collection("post").orderBy("date", Query.Direction.ASCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()){
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         Log.d("frag", document.getId() + " => " + document.get("title"));
-                        //com.example.sunrinchungwon.items.recycler_item fireItem=new recycler_item(""+document.get("title"),""+document.get("date"),""+document.get("isResponed"),""+document.get("introduction"),""+document.get("mainSubject"),""+document.get("conclusion"),""+document.get("tag"));
-                        //recycler_item.add(document.toObject(com.example.sunrinchungwon.items.recycler_item.class));
+                        try {
+                            Timestamp timestamp = document.getTimestamp("date");
+                            recycler_items.add(new recycler_item("" + document.get("title"), timestamp, "" + document.get("isResponed"), "" + document.get("introduction"), "" + document.get("mainSubject"), "" + document.get("conclusion"), "" + document.get("tag")));
+                            Log.e("frag get title", "" + document.get("title"));
+                            Log.e("frag get tag", "" + document.get("tag"));
+                            Log.e("frag get intro",""+document.get("introduction"));
+                            Log.e("in recycleritems",recycler_items.get(recycler_items.size()-1).getIntroduction());
+                        }
+                        catch (Exception e){
+                            Toast.makeText(mainActivity, "loading failed", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
                 else {
                     Log.d("frag", "Error getting documents: ", task.getException());
                 }
+                recyclerViewAdapter.notifyDataSetChanged();
             }
         });
         linearLayoutManager = new LinearLayoutManager(mainActivity);
         recyclerView.addItemDecoration(new DividerItemDecoration(mainActivity, linearLayoutManager.getOrientation()));
         recyclerView.setLayoutManager(linearLayoutManager);
-        recycler_item.add(new recycler_item("학교가 너무 낡았어요", getCurrentTime(), "답변 안 됨", "학교가 너무너무 낡았어요. 그래서 고쳐야 할 것 같아요", "학교가 기울어져서 어쩌구 저쩌구", "꼭좀 고쳐주세요",Code.TagClass.EVERYTHING));
-        recyclerViewAdapter = new RecyclerViewAdapter(mainActivity, recycler_item);
+        Log.d("frag1:",""+recycler_items.size());
+
+        recyclerViewAdapter = new RecyclerViewAdapter(mainActivity, recycler_items);
 
         // callback 함수 구현하라는데 맞는지 모르겠네
         recyclerView.setAdapter(recyclerViewAdapter);

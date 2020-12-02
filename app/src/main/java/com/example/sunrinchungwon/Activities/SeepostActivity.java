@@ -25,13 +25,16 @@ import java.util.Calendar;
 
 public class SeepostActivity extends AppCompatActivity {
     private Intent getintent;
-    String title,date,isResponed,introduction,mainSubject,conclusion;
+    String title,date,isResponed,introduction,mainSubject,conclusion,tag;
     TextView tv_title,tv_date,tv_introduction,tv_mainSubject,tv_conclusion;
     Button btn_agree, btn_proscon;
     Dialog dialog;
     String holy_proscon_String;
     private ArrayList<seepost_item> dataList;
     Seepost_commentAdapter adapter;
+
+    boolean Flag=false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +47,7 @@ public class SeepostActivity extends AppCompatActivity {
         introduction=getintent.getStringExtra("introduction");
         mainSubject=getintent.getStringExtra("mainSubject");
         conclusion=getintent.getStringExtra("conclusion");
+        tag=getintent.getStringExtra("tag");
         tv_title=(TextView) findViewById(R.id.seepost_title);
         tv_date=(TextView) findViewById(R.id.seepost_date);
         tv_introduction=(TextView) findViewById(R.id.seepost_introduction);
@@ -69,8 +73,14 @@ public class SeepostActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //agree 버튼 온클릭 리스너
                 //서버에게 리사이클러뷰 올리는 쓰레드 생성
-                dataList.add(new seepost_item("유저아이디",getCurrentTime(), Code.ViewType.AGREE_CONTENT));
-                adapter.notifyDataSetChanged();
+                if(Flag==false) {
+                    dataList.add(new seepost_item("귀여운 솦과", getCurrentTime(), Code.ViewType.AGREE_CONTENT));
+                    adapter.notifyDataSetChanged();
+                    Flag=true;
+                }
+                else{
+                    Toast.makeText(SeepostActivity.this, "동의는 한 번만 할 수 있습니다용~", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         btn_proscon.setOnClickListener(new View.OnClickListener() {

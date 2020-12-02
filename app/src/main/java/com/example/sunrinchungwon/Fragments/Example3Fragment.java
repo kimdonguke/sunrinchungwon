@@ -15,12 +15,14 @@ import android.widget.Spinner;
 import com.example.sunrinchungwon.Activities.MainActivity;
 import com.example.sunrinchungwon.R;
 import com.example.sunrinchungwon.items.recycler_item;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -73,8 +75,10 @@ public class Example3Fragment extends Fragment {
                     builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
+                            Timestamp timestamp;
+                            timestamp=new Timestamp(getCurrentTime());
                             CollectionReference collectionReference = firebaseFirestore.collection("post");
-                            recycler_item tofireItem=new recycler_item(title_str,getCurrentTime(),getString(R.string.not_answered),intro_str,mainsub_str,conclu_str,fillter);
+                            recycler_item tofireItem=new recycler_item(title_str,timestamp,getString(R.string.not_answered),intro_str,mainsub_str,conclu_str,fillter);
                             collectionReference.add(tofireItem);
                             //파베에 값올리기
                             title.setText("");
@@ -108,10 +112,8 @@ public class Example3Fragment extends Fragment {
         });
         return v;
     }
-    public String getCurrentTime(){
-        Date currentTiem= Calendar.getInstance().getTime();
-        SimpleDateFormat a =new SimpleDateFormat("MM-dd HH:mm");
-        return a.format(currentTiem);
+    public Date getCurrentTime(){
+        Date currentTime= Calendar.getInstance().getTime();
+        return currentTime;
     }
-
 }

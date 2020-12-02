@@ -56,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 mViewPager.setCurrentItem(tab.getPosition());
+                // 올리는 값은 타임스탬프로, recyclerview 에 할당하는 객체는 Date로 하기
+
             }
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {

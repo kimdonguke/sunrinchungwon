@@ -5,6 +5,7 @@ import android.content.Intent;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.res.Resources;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,10 @@ import com.example.sunrinchungwon.items.recycler_item;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.Query;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
@@ -27,11 +31,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private String introduction, mainSubject,conclusion,tag;
 
     public RecyclerViewAdapter(Activity activity, ArrayList<recycler_item> recycler_item){
-            //, Query query,OnPostSelectedListener listener) {
-        //super(query);
         this.activity = activity;
         this.recycler_item = recycler_item;
-        //this.mListener=listener;
     }
 
     @Override
@@ -78,20 +79,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         recycler_item data = recycler_item.get(position);
-
+        Date date = data.getDate().toDate();
+        DateFormat dateFormat = new SimpleDateFormat("mm-dd hh:mm");
+        String strDate = dateFormat.format(date);
         // 데이터 결합
+        tag=data.getTag();
         holder.title.setText(data.getTitle());
-        holder.date.setText(data.getDate());
+        holder.date.setText(strDate);
         holder.isResponed.setText(data.getIsResponed());
         introduction=data.getIntroduction();
         mainSubject=data.getMainSubject();
         conclusion=data.getConclusion();
-        tag=data.getTag();
-    }
-
-    private void removeItemView(int position) {
-        recycler_item.remove(position);
-        notifyItemRemoved(position);
-        notifyItemRangeChanged(position, recycler_item.size()); // 지워진 만큼 다시 채워넣기.
+        Log.e("intro",data.getIntroduction());
     }
 }
